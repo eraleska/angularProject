@@ -1,0 +1,134 @@
+
+<div class="search">
+  <form #form="ngForm" (submit)="onSubmit()">
+    <input type="text" placeholder="Search city" name="city" 
+    [(ngModel)]="cityName">
+  </form>
+</div>
+<div class="container" *ngIf="weatherData">
+  <div class="upper-data">
+    <img src="../assets/after_noon.png" *ngIf="weatherData.current.is_day == 1">
+    <img src="../assets/night.png" *ngIf="weatherData.current.is_day == 0">
+    <div class="weather-data">
+      <div class="location">
+        {{ weatherData.location.name }}, {{weatherData.location.country}}
+      </div>
+      <div class="temperature">{{ weatherData.current.temp_c | number: '1.0-0' }}°C </div> 
+    </div>
+      <img src="../assets/partly_cloudy.png" class="transparent50" *ngIf="weatherData.current.condition.text == 'Partly cloudy'">
+      <img src="../assets/cloudy.png" class="transparent50" *ngIf="weatherData.current.condition.text == 'Overcast'">
+      <img src="../assets/sunny.png" class="transparent50" *ngIf="weatherData.current.condition.text == 'Sunny'">
+      <img src="../assets/rainy.png" class="transparent50" *ngIf="weatherData.current.condition.text == 'Rain'">
+      <img src="../assets/partly_rainy.png" class="transparent50" *ngIf="weatherData.current.condition.text == 'Light rain'">
+      <img src="../assets/clear.png" class="transparent50" *ngIf="weatherData.current.condition.text == 'Clear'">
+  </div>
+  <div class="lower-data">
+    <div class="more-info-label">
+      More information
+    </div>
+    <div class="more-info-container">
+      <div class="info-block">
+        <div class="info-block-label">
+          <img src="../assets/time.png">
+          <span>time</span>
+        </div>
+        <div class="info-block-value">
+          {{ weatherData.location.localtime }}
+        </div>
+      </div>
+
+      <div class="info-block">
+        <div class="info-block-label">
+          <img src="../assets/feels.png">
+          <span>feels like</span>
+        </div>
+        <div class="info-block-value">
+          {{ weatherData.current.feelslike_c | number: '1.0-0'}}°C
+        </div>
+      </div>
+
+      <div class="info-block">
+        <div class="info-block-label">
+          <img src="../assets/humidity.png">
+          <span>humidity</span>
+        </div>
+        <div class="info-block-value">
+          {{ weatherData.current.humidity }}%
+        </div>
+      </div>
+
+      <div class="info-block">
+        <div class="info-block-label">
+          <img src="../assets/wind.png">
+          <span>wind</span>
+        </div>
+        <div class="info-block-value">
+          {{ weatherData.current.wind_kph | number: '1.0-0'}} k/h
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- <div class="container">
+  <div class="upper-data">
+    <img src="../assets/after_noon.png" *ngIf="14 > 15">
+    <img src="../assets/night.png" *ngIf="14 <= 15">
+    <div class="weather-data">
+      <div class="location">
+        Челяба
+      </div>
+      <div class="temperature">{{ 14.40 | number: '1.0-0' }}°C </div>
+    </div>
+  </div>
+  <div class="lower-data">
+    <div class="more-info-label">
+      More information
+    </div>
+    <div class="more-info-container">
+      <div class="info-block">
+        <div class="info-block-label">
+          <img src="../assets/min.png">
+          <span>min</span>
+        </div>
+        <div class="info-block-value">
+          10°C
+        </div>
+      </div>
+
+      <div class="info-block">
+        <div class="info-block-label">
+          <img src="../assets/max.png">
+          <span>max</span>
+        </div>
+        <div class="info-block-value">
+          22°C
+        </div>
+      </div>
+
+      <div class="info-block">
+        <div class="info-block-label">
+          <img src="../assets/humidity.png">
+          <span>humidity</span>
+        </div>
+        <div class="info-block-value">
+          60%
+        </div>
+      </div>
+
+      <div class="info-block">
+        <div class="info-block-label">
+          <img src="../assets/wind.png">
+          <span>wind</span>
+        </div>
+        <div class="info-block-value">
+          11 km/h
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div> -->
+
+<router-outlet></router-outlet>
